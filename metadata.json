@@ -1,0 +1,7 @@
+{
+  "name": "Lumina Journal",
+  "description": "A vibrant, AI-powered daily journal for capturing thoughts, tracking moods, and receiving daily inspirations with Gemini-integrated writing prompts.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
