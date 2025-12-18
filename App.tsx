@@ -1,20 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Layout from './components/Layout';
-import LandingPage from './pages/LandingPage';
-import AuthPage from './pages/AuthPage';
-import DashboardPage from './pages/DashboardPage';
-import EntryEditorPage from './pages/EntryEditorPage';
-import { supabase } from './services/supabaseClient';
-import { User } from './types';
+import Layout from './components/Layout.tsx';
+import LandingPage from './pages/LandingPage.tsx';
+import AuthPage from './pages/AuthPage.tsx';
+import DashboardPage from './pages/DashboardPage.tsx';
+import EntryEditorPage from './pages/EntryEditorPage.tsx';
+import { supabase } from './services/supabaseClient.ts';
+import { User } from './types.ts';
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check active sessions and sets the user
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
         setUser({
@@ -27,7 +26,6 @@ const App: React.FC = () => {
       setIsLoading(false);
     });
 
-    // Listen for changes on auth state
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
         setUser({

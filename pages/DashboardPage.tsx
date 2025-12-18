@@ -2,10 +2,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Calendar, ChevronRight, Plus, Sparkles, Trash2, BarChart3, Clock, Loader2 } from 'lucide-react';
-import { getStoredEntries, deleteEntry } from '../services/dbService';
-import { getDailyPrompt } from '../services/geminiService';
-import { JournalEntry, User } from '../types';
-import { MOODS } from '../constants';
+import { getStoredEntries, deleteEntry } from '../services/dbService.ts';
+import { getDailyPrompt } from '../services/geminiService.ts';
+import { JournalEntry, User } from '../types.ts';
+import { MOODS } from '../constants.tsx';
 
 interface DashboardPageProps {
   user: User;
@@ -67,7 +67,6 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ user }) => {
 
   return (
     <div className="space-y-10 animate-in fade-in duration-700">
-      {/* Welcome & Prompt Section */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 bg-white border-4 border-black rounded-[2.5rem] p-8 md:p-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-center">
           <div className="mb-6">
@@ -94,7 +93,6 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ user }) => {
           </div>
         </div>
 
-        {/* Stats Section */}
         <div className="bg-white border-4 border-black rounded-[2.5rem] p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           <h3 className="text-xl font-black uppercase tracking-widest mb-6 flex items-center gap-2">
             <BarChart3 className="w-5 h-5" /> Mood Stats
@@ -130,7 +128,6 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ user }) => {
         </div>
       </section>
 
-      {/* Entries List Header */}
       <div className="flex flex-col md:flex-row gap-6 items-end justify-between border-b-4 border-black pb-6">
         <div>
           <h3 className="text-4xl font-black uppercase tracking-tighter">Your Library</h3>
@@ -148,10 +145,8 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ user }) => {
         </div>
       </div>
 
-      {/* Grid */}
       {isLoading ? (
         <div className="flex flex-col items-center justify-center py-24 gap-4">
-          {/* Fix: Added Loader2 to imports above */}
           <Loader2 className="w-12 h-12 animate-spin text-black" />
           <p className="font-black uppercase tracking-widest animate-pulse">Retrieving your thoughts...</p>
         </div>
